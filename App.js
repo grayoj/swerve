@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Context from '../api/context';
+import shortTabs from '../components/shortTabs';
 
-export default function App() {
+function App() {
+
+  const {darkTheme} = useContext(NewsContext);
+
   return (
-    <View style={styles.container}>
-      <Text></Text>
-      <StatusBar style="auto" />
+    <View style={{...styles.container, backgroundColor: darkTheme ?
+    "#282c35": "white",}}>
+      <shortTabs />
     </View>
   );
 }
@@ -16,3 +21,11 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
   },
 });
+
+export default () => {
+ return (
+ <Context>
+   <App />
+ </Context> 
+ );
+}
